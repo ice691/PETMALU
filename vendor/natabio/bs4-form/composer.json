@@ -1,0 +1,30 @@
+{
+    "name": "natabio/bs4-form",
+    "description": "Laravel Collective 5 based Twitter Bootstrap 4 Form service.",
+    "type": "package",
+    "license": "GPL-3.0+",
+    "authors": [
+        {
+            "name": "Adrian Natabio",
+            "email": "adriannatabio@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.5.9",
+        "laravel/framework": "~5.5.0|~5.6.0",
+        "laravelcollective/html": "^5.5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Natabio\\BS4Form\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Natabio\\BS4Form\\BootstrapFormServiceProvider"
+            ]
+        }
+    }
+}

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\Rules\EnabledUser;
 
 class LoginController extends Controller
 {
@@ -50,6 +51,28 @@ class LoginController extends Controller
         return response()->json([
             'result' => true,
         ]);
+    }
+
+    protected function validateLogin(Request $request) 
+    {
+        $this->validate($request, [
+            $this->username() => ['required', 'string', new EnabledUser],
+            'password' => 'required|string'
+        ]);
+    }
+
+    //COMMENT
+    public function destroy(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        if ($user->is('disabled')) {
+            return redirect()
+                ->back()
+                ->with('deletionError', 'Account Disabled.');
+        }
+
+        return parent::destroy($request, $id);
     }
 
 }
